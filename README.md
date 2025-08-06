@@ -102,6 +102,6 @@ npm start
 Access the dashboard at: [http://localhost:3000](http://localhost:3000)
 
 --- 
-![Dashboard Screenshot](screenshots/Screenshot 1.png)
-![Dashboard Screenshot](screenshots/Screenshot 2.png)
-![Dashboard Screenshot](screenshots/Screenshot 3.png)
+![Dashboard Screenshot](screenshots/Screenshot1.png)
+![Dashboard Screenshot](screenshots/Screenshot2.png)
+![Dashboard Screenshot](screenshots/Screenshot3.png)
