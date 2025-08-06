@@ -1,69 +1,107 @@
-# Task 1: Laying the Foundation for Brent Oil Price Analysis
+# Brent Oil Price Analysis & Dashboard
 
-## Objective
-This task sets the foundation for analyzing fluctuations in Brent oil prices by preparing data, understanding the key modeling concepts, and planning the full analysis pipeline.
-
----
-
-## Workflow Overview
-
-The core steps defined for this project are:
-
-1. **Data Collection & Cleaning**  
-   - Historical Brent oil prices were preprocessed and stored as `BrentOilPrices.csv`.
-
-2. **Feature Engineering**  
-   - Log returns were computed to normalize and stabilize variance in price movements.
-   - Rolling statistics (mean, standard deviation) were calculated for multiple window sizes to explore short- and long-term volatility regimes.
-
-3. **Stationarity Testing**  
-   - Augmented Dickey-Fuller (ADF) test was applied.
-   - Results showed log returns are stationary (p-value ≈ 0.000).
-
-4. **Event Data Compilation**  
-   - 26 major oil market events were compiled from credible sources (EIA, OPEC, historical news).
-   - Events include geopolitical conflicts, OPEC decisions, economic disruptions, and supply shocks.
-
-5. **Model Selection Planning**  
-   - Change Point Detection using Bayesian methods (PyMC3) is chosen for identifying structural breaks in the data.
+## Overview
+This project analyzes historical Brent oil prices, detects structural change points, and correlates these changes with significant geopolitical and economic events. The results are presented in an **interactive React dashboard** powered by a **Flask API backend**.
 
 ---
 
-## Example Events Collected
+## Laying the Foundation for Brent Oil Price Analysis
 
-| Date | Event | Type | Description |
-|------|-------|------|-------------|
-| 1980-09-23 | Iran–Iraq War begins | Conflict | Iraq invades Iran, disrupting oil production |
-| 1981-01-28 | U.S. Deregulates Oil Prices | Policy | Reagan lifts federal oil price controls |
-| 1983-10-01 | OPEC Quotas Set | OPEC Decision | OPEC sets production quotas amid oversupply |
-| 1985-08-01 | Saudi Arabia floods market | Market Strategy | Output surge triggers oil glut and price crash |
-| 1986-06-08 | OPEC fails agreement | OPEC Decision | Failure to agree on cuts leads to sub-$10 prices |
-| 1989-03-24 | Exxon Valdez Oil Spill | Disaster | Alaska spill disrupts supply and markets |
-| 1990-08-02 | Iraq invades Kuwait | Conflict | Triggers Gulf War, causes price spike |
-| ... | ... | ... | ... |
+### Objective
+Prepare data, understand modeling concepts, and plan the full analysis pipeline.
 
-The full dataset includes 26 curated events and is saved as `oil_market_events.csv`.
-
----
-
-## Assumptions & Limitations
-
-- **Log returns** are used instead of raw prices to ensure stationarity and normality.
-- **Rolling statistics** vary depending on window size; professionals often use 21 (monthly), 60 (quarterly), or 252 (yearly) trading days.
-- **Causation vs Correlation**:  
-  Correlation in time series doesn't imply a causal relationship. For example, if a price spike coincides with an OPEC decision, it could be due to underlying expectations, not the announcement itself. This analysis identifies **temporal alignment**, not definitive cause-effect.
+### Workflow
+1. **Data Collection & Cleaning**
+   - Historical Brent oil prices preprocessed into `brent_oil_log_returns.csv`.
+2. **Feature Engineering**
+   - Computed **Log Returns** for stationarity.
+   - Added rolling mean & standard deviation for volatility analysis.
+3. **Stationarity Testing**
+   - ADF test confirmed log returns are stationary (p-value ≈ 0.000).
+4. **Event Data Compilation**
+   - 26 major events from EIA, OPEC, and historical archives.
+5. **Model Planning**
+   - Bayesian Change Point Detection (PyMC3) selected for structural break detection.
 
 ---
 
-##  Communication Formats
+##  Backend Development (Flask API)
 
-Results will be shared through:
+### Objective
+Create a backend to serve:
+- Historical Prices
+- Event Data
+- Single Change Point Detection Results
+- Multiple Change Point Detection Results
+- Combined Summary Endpoint
 
-- **Interactive web dashboard** built with **React (frontend)** and **Flask (API backend)**.
-- **Jupyter notebooks** for technical analysis, exploration, and validation.
-- **Summarized insights and reports**
+### API Endpoints
+| Endpoint           | Description                                   |
+|--------------------|-----------------------------------------------|
+| `/api/prices`      | Returns historical Brent oil price data       |
+| `/api/events`      | Returns curated oil market events             |
+| `/api/single_cp`   | Returns single detected change point          |
+| `/api/multi_cp`    | Returns multiple detected change points       |
 
 
-## Status: Complete
-Task 1 is now complete. The analysis framework, events, and data understanding are in place to proceed with Bayesian modeling in Task 2.
+---
 
+## Frontend Development (React)
+
+### Objective
+Build an **interactive dashboard** to visualize:
+- **Price Trends** over time
+- **Log Returns** (Volatility) over time
+- **Event Frequency** by year/type
+- **Change Point Impacts** (% change before/after)
+- **Tabular Data** for events & change points
+
+### Key Features
+- Filter by **date range** & change point type
+- Hover tooltips for precise data points
+- Color-coded tables and clean layout
+- Multiple charts for better insights
+- Export dashboard as **PNG** or **PDF** (optional)
+
+---
+
+## Dashboard Structure
+- **Header Controls** — Date range & CP filter
+- **Price Chart** — Prices with change point markers
+- **Log Return Chart** — Daily log returns over time
+- **Event Frequency Chart** — Events by year
+- **Impact Charts** — % change before/after change points
+- **Tables** — Single CP, Multi CP, and Events
+
+---
+
+## Data Sources
+- Brent oil price data from **EIA** & public historical datasets
+- Event data compiled from **OPEC reports, news archives, EIA**
+
+---
+
+## How to Run Locally
+
+### Backend
+
+```bash
+cd dashboard/backend
+pip install -r requirements.txt
+python app.py
+```
+
+### Frontend
+
+```bash
+cd dashboard/frontend
+npm install
+npm start
+```
+
+Access the dashboard at: [http://localhost:3000](http://localhost:3000)
+
+--- 
+![Dashboard Screenshot](screenshots/Screenshot 1.png)
+![Dashboard Screenshot](screenshots/Screenshot 2.png)
+![Dashboard Screenshot](screenshots/Screenshot 3.png)
