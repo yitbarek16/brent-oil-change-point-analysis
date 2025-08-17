@@ -1,38 +1,60 @@
 import React from "react";
 
-function HeaderControls({ dateRange, setDateRange, showCP, setShowCP }) {
+export default function HeaderControls({
+  dateRange,
+  setDateRange,
+  showCP,
+  setShowCP,
+  showEvents,
+  setShowEvents,
+}) {
   return (
-    <div className="header-controls">
-      <label>
-        Start Date:
+    <div className="card controls">
+      {/* No extra row wrapper */}
+      <div className="control">
+        <label>Start Date:</label>
         <input
           type="date"
           value={dateRange.start}
-          onChange={(e) => setDateRange({ ...dateRange, start: e.target.value })}
+          onChange={(e) => setDateRange((r) => ({ ...r, start: e.target.value }))}
         />
-      </label>
-      <label>
-        End Date:
+      </div>
+
+      <div className="control">
+        <label>End Date:</label>
         <input
           type="date"
           value={dateRange.end}
-          onChange={(e) => setDateRange({ ...dateRange, end: e.target.value })}
+          onChange={(e) => setDateRange((r) => ({ ...r, end: e.target.value }))}
         />
-      </label>
-      <label>
-        Show Change Points:
+      </div>
+
+      <div className="control">
+        <label>Events:</label>
         <select
-          value={showCP}
-          onChange={(e) => setShowCP(e.target.value)}
+          value={showEvents ? "on" : "off"}
+          onChange={(e) => setShowEvents(e.target.value === "on")}
         >
-          <option value="all">All</option>
-          <option value="single">Single CP</option>
-          <option value="multi">Multi CP</option>
-          <option value="none">None</option>
+          <option value="on">Show</option>
+          <option value="off">Hide</option>
         </select>
-      </label>
+      </div>
+
+      <div className="control">
+        <label>Change Points:</label>
+        <select value={showCP} onChange={(e) => setShowCP(e.target.value)}>
+          <option value="all">All</option>
+          <option value="single">Single only</option>
+          <option value="multi">Multi only</option>
+          <option value="none">Hide</option>
+        </select>
+      </div>
+
+      <div className="control">
+        <button className="btn" onClick={() => setDateRange({ start: "", end: "" })}>
+          Reset Dates
+        </button>
+      </div>
     </div>
   );
 }
-
-export default HeaderControls;

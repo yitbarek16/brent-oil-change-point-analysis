@@ -1,39 +1,191 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  color: #333;
-  margin: 0;
-  padding: 0;
+/* General Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #f4f7fb, #eef2f7);
+  min-height: 100vh;
+  color: #2c3e50; /* default text color */
 }
 
-h1, h2, h3 {
-  font-weight: bold;
+/* Page Header */
+.page-header {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #f1f1f1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffd700;
+}
+.subtitle {
+  color: #cfd8dc;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-style: italic;
 }
 
-section {
-  background: #ffffff;
-  padding: 1rem;
-  margin: 1rem auto;
-  border-radius: 8px;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+/* KPI Row */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin: 20px 0;
+}
+.kpi-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.2);
+}
+.kpi-label {
+  font-size: 12px;
+  color: #607d8b;
+}
+.kpi-value {
+  font-size: 26px;
+  font-weight: 700;
+}
+.kpi-sub {
+  font-size: 11px;
+  color: #90a4ae;
 }
 
-table {
+/* KPI Color Themes */
+.kpi-high { color: #2e7d32; }  /* green - highest price */
+.kpi-low { color: #c62828; }   /* red - lowest price */
+.kpi-avg { color: #1565c0; }   /* blue */
+.kpi-vol { color: #6a1b9a; }   /* purple */
+.kpi-count { color: #f9a825; } /* gold */
+
+/* Cards */
+.card {
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  background: #fff;
+  color: #2c3e50;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0,0,0,.2);
+}
+
+/* Section-specific colors */
+.card h3 {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+.card.price { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+.card.volatility { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+.card.cp { background: linear-gradient(135deg, #f3e5f5, #e1bee7); }
+.card.events { background: linear-gradient(135deg, #fffde7, #fff59d); }
+
+/* Grid layout */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+/* Row Between */
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: row; /* horizontal layout */
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* allows wrapping if screen is small */
+  margin-bottom: 16px;
+}
+
+.controls .control {
+  display: inline-flex; /* keep label + input inline */
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap; /* prevents label from breaking */
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #1976d2, #42a5f5);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+/* Table */
+.table-wrap { overflow:auto; }
+.table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.table th, .table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: right;
+}
+.table th {
+  background: #1976d2;
+  color: #fff;
+}
+.table td:first-child,
+.table th:first-child,
+.table td:nth-child(2),
+.table th:nth-child(2) {
+  text-align: left;
 }
 
-th {
-  background-color: #1976d2;
-  color: white;
+/* List / Events */
+.list {
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 6px;
 }
-
-td, th {
-  border: 1px solid #ddd;
-  padding: 0.5rem;
+.list-item {
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.9);
+  transition: transform 0.2s;
 }
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
+.list-item:hover {
+  transform: translateX(4px);
+  background: rgba(245, 245, 245, 0.9);
 }
+.list-title { font-weight: 600; color: #2c3e50; }
+.list-sub, .list-desc { font-size: 12px; color: #455a64; }
+.muted { color: #90a4ae; }
