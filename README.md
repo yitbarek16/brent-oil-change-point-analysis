@@ -61,7 +61,6 @@ Build an **interactive dashboard** to visualize:
 - Hover tooltips for precise data points
 - Color-coded tables and clean layout
 - Multiple charts for better insights
-- Export dashboard as **PNG** or **PDF** (optional)
 
 ---
 
@@ -102,6 +101,5 @@ npm start
 Access the dashboard at: [http://localhost:3000](http://localhost:3000)
 
 --- 
-![Dashboard Screenshot](screenshots/Screenshot1.png)
-![Dashboard Screenshot](screenshots/Screenshot2.png)
-![Dashboard Screenshot](screenshots/Screenshot3.png)
+![Dashboard Screenshot](screenshots/dashboard_1.png)
+![Dashboard Screenshot](screenshots/dashboard_2.png)
